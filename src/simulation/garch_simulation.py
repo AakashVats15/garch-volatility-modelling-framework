@@ -3,11 +3,17 @@ import numpy as np
 def simulate_garch(model, n, seed=None):
     if seed is not None:
         np.random.seed(seed)
-    r = np.zeros(n)
+
+    omega, alpha, beta = model.omega, model.alpha, model.beta
     h = np.zeros(n)
-    h[0] = model.omega / (1 - model.alpha - model.beta)
+    r = np.zeros(n)
+
+    h[0] = omega / (1 - alpha - beta)
+    z = np.random.randn(n)
+    r[0] = np.sqrt(h[0]) * z[0]
+
     for t in range(1, n):
-        z = np.random.randn()
-        r[t] = np.sqrt(h[t - 1]) * z
-        h[t] = model.omega + model.alpha * r[t] ** 2 + model.beta * h[t - 1]
+        h[t] = omega + alpha * r[t-1]**2 + beta * h[t-1]
+        r[t] = np.sqrt(h[t]) * z[t]
+
     return r, h
