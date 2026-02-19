@@ -68,8 +68,13 @@ garch-volatility-modelling-framework/
 │   └── test_forecasting.py
 │
 ├── docs/                   
+│   ├── overview.md
+│   ├── architecture.md
 │   ├── methodology.md
+│   ├── math_notes.md
+│   ├── usage.md
 │   ├── interpretation.md
+│   ├── examples.md
 │   └── figures/
 │
 ├── requirements.txt        
