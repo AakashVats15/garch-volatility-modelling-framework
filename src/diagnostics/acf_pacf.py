@@ -1,11 +1,15 @@
 import numpy as np
 
 def acf(x, lag):
-    x = np.asarray(x, dtype=float)
-    x = x - np.mean(x)
-    n = len(x)
-    denom = np.sum(x ** 2)
-    num = np.sum(x[: n - lag] * x[lag:])
+    x = np.asarray(x)
+    mean = np.mean(x)
+
+    num = np.sum((x[:-lag] - mean) * (x[lag:] - mean))
+    denom = np.sum((x - mean)**2)
+
+    if denom == 0:
+        return 0.0 
+
     return num / denom
 
 def pacf(x, lag):
