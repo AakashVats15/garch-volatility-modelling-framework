@@ -29,52 +29,51 @@ The codebase is structured to mirror how a quant research team would organise a 
 garch-volatility-modelling-framework/
 │
 ├── data/
-│   ├── raw/                # Unprocessed price/return data
-│   └── processed/          # Cleaned returns, volatility series
+│   ├── raw/                
+│   └── processed/          
 │
 ├── src/
-│   ├── models/             # ARCH/GARCH models + MLE estimation
+│   ├── models/             
 │   │   ├── arch_model.py
 │   │   ├── garch_model.py
 │   │   └── mle_estimation.py
 │   │
-│   ├── diagnostics/        # ACF/PACF, QQ-plots, residual tests
+│   ├── diagnostics/        
 │   │   ├── acf_pacf.py
 │   │   ├── qq_plots.py
 │   │   └── residual_tests.py
 │   │
-│   ├── forecasting/        # Volatility forecasting utilities
+│   ├── forecasting/        
 │   │   └── volatility_forecast.py
 │   │
-│   ├── simulation/         # GARCH return path simulation
+│   ├── simulation/         
 │   │   └── garch_simulation.py
 │   │
-│   ├── utils/              # Data loading, plotting, helper functions
+│   ├── utils/             
 │   │   ├── data_loader.py
 │   │   ├── plotting.py
 │   │   └── stats_helpers.py
 │   │
 │   └── __init__.py
 │
-├── examples/               # Minimal runnable scripts
+├── examples/               
 │   ├── run_estimation.py
 │   ├── run_diagnostics.py
 │   ├── run_forecasting.py
 │   └── run_simulation.py
 │
-├── tests/                  # Unit tests for reliability
+├── tests/                  
 │   ├── test_models.py
 │   ├── test_diagnostics.py
 │   └── test_forecasting.py
 │
-├── docs/                   # Methodology + interpretation notes
+├── docs/                   
 │   ├── methodology.md
 │   ├── interpretation.md
 │   └── figures/
 │
-├── requirements.txt        # Python dependencies
-├── README.md               # Project documentation
-├── LICENSE                 # License information
+├── requirements.txt        
+├── README.md               
 └── .gitignore
 ```
 
