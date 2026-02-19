@@ -1,29 +1,44 @@
 # **GARCH Volatility Modelling Framework**
 
-A modular Python framework for modelling, estimating, diagnosing, and forecasting financial market volatility using ARCH and GARCH models.  
-This project is designed as a clean, extensible research codebase suitable for quant finance, risk modelling, and time‑series analysis.
+A modular, research‑grade Python framework for estimating, diagnosing, forecasting, and simulating volatility using ARCH and GARCH models. Designed with clarity, reproducibility, and extensibility in mind, this project mirrors the workflow used in quantitative research teams across trading, asset management, and risk analytics.
 
 ---
 
-## **📌 Overview**
+## **📌 Features**
 
-Volatility is a central concept in financial modelling, risk management, and derivative pricing.  
-This repository implements a full workflow for:
+### **Volatility Modelling**
+- ARCH(1)  
+- GARCH(1,1)  
+- Maximum likelihood estimation (L‑BFGS‑B)  
+- AIC/BIC model selection  
+- Strict parameter validation  
 
-- ARCH and GARCH(1,1) volatility models  
-- Maximum Likelihood Estimation (MLE) of model parameters  
-- Volatility clustering analysis  
-- Residual diagnostics (ACF, PACF, QQ‑plots, Ljung‑Box tests)  
-- AIC/BIC model comparison  
-- Multi‑step volatility forecasting  
-- Simulation of return paths under calibrated GARCH  
-- Visualisations and interpretation of results  
+### **Diagnostics**
+- ACF & PACF  
+- Ljung–Box autocorrelation test  
+- Jarque–Bera normality test  
+- QQ‑plots  
+- Residual summary statistics  
 
-The codebase is structured to mirror how a quant research team would organise a modelling pipeline: modular, testable, and easy to extend.
+### **Forecasting**
+- Multi‑step ARCH forecasts  
+- Multi‑step GARCH forecasts  
+- Deterministic forward variance recursion  
+
+### **Simulation**
+- Monte‑Carlo GARCH(1,1) return & variance paths  
+- Stationary initialization  
+- Deterministic seeding  
+
+### **Engineering**
+- Clean modular architecture  
+- Fully documented (`docs/`)  
+- Unit tests (`tests/`)  
+- Ready‑to‑run examples (`examples/`)  
 
 ---
 
-## **📁 Folder Structure**
+## **📂 Project Structure**
 
 ```
 garch-volatility-modelling-framework/
@@ -84,59 +99,93 @@ garch-volatility-modelling-framework/
 
 ---
 
-## **🔧 What This Framework Implements**
-
-### **1. ARCH & GARCH(1,1) Models**
-- Conditional variance modelling  
-- Log‑likelihood computation  
-- Parameter constraints (positivity, stationarity)
-
-### **2. MLE Parameter Estimation**
-- Numerical optimisation (e.g., BFGS, Nelder‑Mead)  
-- Robust handling of parameter bounds  
-- Convergence diagnostics  
-
-### **3. Volatility Clustering Analysis**
-- Squared returns  
-- Rolling variance  
-- Visual inspection tools  
-
-### **4. Residual Diagnostics**
-- ACF & PACF of residuals and squared residuals  
-- QQ‑plots for normality  
-- Ljung‑Box tests  
-- Standardised residual checks  
-
-### **5. Model Comparison**
-- AIC / BIC computation  
-- Side‑by‑side comparison of ARCH vs GARCH  
-
-### **6. Volatility Forecasting**
-- One‑step and multi‑step forecasts  
-- Forecast error evaluation  
-- Plotting forecast paths  
-
-### **7. Simulation**
-- Simulated return paths under calibrated GARCH  
-- Monte‑Carlo volatility scenarios  
-- Reproducible random seeds  
-
-### **8. Visualisation & Interpretation**
-- Clean, publication‑quality plots  
-- Interpretation notes in `/docs`  
-
----
-
 ## **🚀 Getting Started**
 
-Install dependencies:
+### **1. Install Dependencies**
 
 ```
 pip install -r requirements.txt
 ```
 
-Run a full estimation example:
+### **2. Prepare Your Data**
+
+Place your return series in:
+
+```
+data/asset.csv
+```
+
+with a column named:
+
+```
+returns
+```
+
+### **3. Run an Example**
 
 ```
 python examples/run_estimation.py
 ```
+
+---
+
+## **📘 Documentation**
+
+The `docs/` folder contains a complete documentation suite:
+
+- **overview.md** — high‑level introduction  
+- **architecture.md** — system design  
+- **methodology.md** — modelling workflow  
+- **math_notes.md** — mathematical derivations  
+- **usage.md** — practical guide  
+- **interpretation.md** — how to interpret outputs  
+- **examples.md** — explanation of example scripts  
+
+This makes the project easy to understand, audit, and extend.
+
+---
+
+## **🧪 Testing**
+
+Run the unit tests:
+
+```
+pytest tests/
+```
+
+Tests cover:
+
+- model recursion  
+- likelihood evaluation  
+- diagnostics  
+- forecasting logic  
+
+---
+
+## **📈 Extending the Framework**
+
+The modular design allows easy extension:
+
+- EGARCH  
+- GJR‑GARCH  
+- APARCH  
+- Student‑t likelihood  
+- DCC‑GARCH  
+- richer diagnostics  
+- alternative optimizers  
+
+Each module is isolated and follows a consistent interface.
+
+---
+
+## **🎯 Purpose of This Project**
+
+This framework is ideal for:
+
+- quantitative research  
+- risk modelling  
+- academic study  
+- strategy development  
+- teaching volatility modelling  
+
+It provides a clean, transparent foundation for understanding and experimenting with volatility dynamics.
