@@ -16,22 +16,46 @@ class GARCHModel:
             raise ValueError("alpha + beta must be < 1 for stationarity")
 
     def conditional_variance(self, returns):
+        """
+        Computes the conditional variance sequence h_t using:
+        h_t = ω + α r_{t-1}^2 + β h_{t-1}
+        """
         self._check_params()
         r = ensure_1d(returns)
         n = r.shape[0]
+
         h = np.empty(n)
+        # Initialize with sample variance (common practice)
         h[0] = np.var(r)
+
         for t in range(1, n):
-            h[t] = self.omega + self.alpha * r[t - 1] ** 2 + self.beta * h[t - 1]
+            h[t] = (
+                self.omega
+                + self.alpha * r[t - 1] ** 2
+                + self.beta * h[t - 1]
+            )
+
         return h
 
-    def loglikelihood(self, returns):
+    def loglik(self, returns):
+        """
+        Standard Gaussian log-likelihood:
+        -0.5 * sum[ log(2π) + log(h_t) + r_t^2 / h_t ]
+        """
         r = ensure_1d(returns)
         h = self.conditional_variance(r)
+
+        # If variance ever becomes non-positive, likelihood is invalid
         if np.any(h <= 0):
             return -np.inf
-        ll = -0.5 * (np.log(2 * np.pi) + np.log(h) + (r ** 2) / h)
-        return np.sum(ll)
+
+        return -0.5 * np.sum(
+            np.log(2 * np.pi) + np.log(h) + (r ** 2) / h
+        )
+
+    # Compatibility alias
+    def loglikelihood(self, returns):
+        return self.loglik(returns)
 
     def residuals(self, returns):
         r = ensure_1d(returns)
