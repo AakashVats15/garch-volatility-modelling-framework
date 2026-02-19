@@ -80,6 +80,7 @@ garch-volatility-modelling-framework/
 ├── tests/                  
 │   ├── test_models.py
 │   ├── test_diagnostics.py
+│   ├── test_simulation.py
 │   └── test_forecasting.py
 │
 ├── docs/                   
